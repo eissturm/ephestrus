@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ object.title }}{% endblock %}
+
+{% block content %}
+<article>
+	<header>
+    	<h2>{{ object.title }}</h2>
+        Published <time datetime="{{ object.pub_date }}" pubdate>{{ object.pub_date|date}}</time><br />
+        By <a href="">{{ object.author.first_name }}</a>.
+    </header>
+    {{ object.entry|safe }}
+</article>
+{% endblock %}
