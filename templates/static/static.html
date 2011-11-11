@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+{% block title %}{{ flatpage.title }}{% endblock %}
+{% block main %}
+<section class="{{ flatpage.title }} content grid_9 push_1">
+	{{ flatpage.content }}
+</section>
+{% endblock %}

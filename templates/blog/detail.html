@@ -1,0 +1,16 @@
+{% extends 'blog/list.html' %}
+
+{% block title %}{{ object.title }}{% endblock %}
+
+{% block content %}
+<section class="content grid_8">
+	<article class="post">
+		<header>
+			<h3>{{ object.title }}</h3>
+			Published <time datetime="{{ object.pub_date }}" pubdate>{{ object.pub_date|date}}</time><br />
+			By <a href="">{{ object.author.first_name }}</a>.
+		</header>
+		{{ object.entry|safe }}
+	</article>
+</section>
+{% endblock %}

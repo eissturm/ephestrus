@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}Home{% endblock %}
+{% block main %}
+<section class="bio content grid_9 push_1">
+	<h2>About</h2>
+	<p>Hi, I'm Andrew Meyer, and this is my website.  In case you were wondering, I look like this:</p>
+	<figure class="">
+		<img src="http://media.ephestr.us/img/profile_pic.jpg" title="I don't always look like this" alt="Picture of Andrew Meyer"/>
+		<figcaption>Yeah, you definitely want this guy making your website.</figcaption>
+	</figure>
+</section><!-- end .bio -->
+<section class="news content grid_9 push_1">
+	<h2>News</h2>
+	<article class="post">
+		<header>
+			<h3><a href="{{ blog.get_absolute_url }}">{{ blog.title }}</a></h3>
+			Published <time datetime="{{ blog.pub_date }}" pubdate>{{ blog.pub_date|date}}</time><br />
+			By <a href="">{{ blog.author.first_name }}</a>.
+		</header>
+		{{ blog.entry|truncatewords_html:"120"|safe }}
+		<p><a href="{{ blog.get_absolute_url }}">Read more.</a></p>
+	</article>
+</section><!-- end .news -->
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block main %}
+<section class="content grid_8 push_1">
+	{% block content %}
+	<h2>News</h2>
+	{% for object in object_list %}
+	<article class="post">
+		<header>
+			<h3><a href="{{object.get_absolute_url }}">{{ object.title }}</a></h3>
+			Published <time datetime="{{ object.pub_date }}" pubdate>{{ object.pub_date|date}}</time><br />
+			By <a href="">{{ object.author.first_name }}</a>.
+		</header>
+		{{ object.entry|truncatewords_html:"100"|safe }}
+		<p><a href="{{ object.get_absolute_url }}">Read more.</a></p>
+	</article>
+	{% empty %}
+	<p>There's nothing here yet.</p>
+	{% endfor %}
+	{% endblock %}
+</section>
+
+<aside class="archive grid_3 push_1">
+	<h3>Archive</h3>
+	<ul>
+		{% for object in recent|slice:"4" %}
+		<li><a href="{{ object.get_absolute_url }}">{{ object.title }}</a> in {{ object.section|capfirst }} - {{ object.pub_date|date:"N d" }}</li>
+		{% empty %}
+		<li>There's nothing here!</li>
+		{% endfor %}
+	</ul>
+</aside><!-- end #sidebar -->
+{% endblock %}
