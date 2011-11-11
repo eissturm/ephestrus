@@ -37,7 +37,7 @@
   <script src="js/libs/modernizr-2.0.6.min.js"></script>
 </head>
 
-<body>
+<body id="{% block pageName %}{% endblock %}">
 
   <div id="container" class="container_12">
     <header id="top_header" class="container_12">
@@ -61,22 +61,6 @@
     </header>
     <div id="main" role="main" class="container_12">
     {% block main %}
-        <div id="content" class="grid_8">
-        <section id="blog">
-        </section>
-        </div><!-- end #content -->
-        <div id="sidebar" class="grid_4">
-        	<div id="recent">
-				<h2>Recent Posts</h2>
-				<ul>
-				{% for object in recent|slice:"4" %}
-					<li><a href="{{ object.get_absolute_url }}">{{ object.title }}</a> in {{ object.section|capfirst }} - {{ object.pub_date|date:"N d" }}</li>
-				{% endfor %}
-				</ul>
-            </div>
-			<h2>Related</h2>
-<p>Shoulder shank tail tongue beef bresaola. Swine bacon brisket ham, bresaola pork belly hamburger shankle. Pastrami chuck flank hamburger bacon jowl t-bone, drumstick shank swine brisket tenderloin. Corned beef andouille drumstick ham hock tongue filet mignon, turkey sirloin biltong. Pancetta andouille ribeye t-bone. Chicken pork chop beef ribs tail short ribs, pancetta bresaola shank tongue turkey rump. Ribeye salami capicola, fatback swine chicken frankfurter ham hock corned beef strip steak shoulder shank.</p>
-        </div><!-- end #sidebar -->
     {% endblock %}
     </div><!-- end #main -->
     <footer class="container_12">

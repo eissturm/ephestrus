@@ -1,9 +1,10 @@
 {% extends 'base.html' %}
 
 {% block title %}Home{% endblock %}
+{% block pageName %}list{% endblock %}
 
 {% block main %}
-<div id="content" class="grid_8">
+<div id="content">
 	<section id="blog">
 		{% for object in object_list %}
 		<article>
@@ -12,19 +13,23 @@
 				Published <time datetime="{{ object.pub_date }}" pubdate>{{ object.pub_date|date}}</time><br />
 				By <a href="">{{ object.author.first_name }}</a>.
 			</header>
-			{{ object.entry|truncatewords_html:"20"|safe }}
+			{{ object.entry|truncatewords_html:"45"|safe }}
 			<p><a href="{{ object.get_absolute_url }}">read more</a></p>
 		</article>
+		{% empty %}
+		<p>There's nothing here yet.</p>
 		{% endfor %}
 	</section>
 </div>
 
-<div id="sidebar" class="grid_4">
+<div id="sidebar>
 	<div id="recent">
 		<h2>Recent Posts</h2>
 		<ul>
 			{% for object in recent|slice:"4" %}
 			<li><a href="{{ object.get_absolute_url }}">{{ object.title }}</a> in {{ object.section|capfirst }} - {{ object.pub_date|date:"N d" }}</li>
+			{% empty %}
+			<li>There's nothing here!</li>
 			{% endfor %}
 		</ul>
 	</div>

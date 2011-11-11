@@ -4,11 +4,6 @@ from taggit.managers import TaggableManager
 from markupfield.fields import MarkupField
 
 class Post(models.Model):
-	SECTION_CHOICES = (
-		('tech', 'Tech'),
-		('web', 'Web'),
-		('life', 'Life'),
-	)
 	title = models.CharField(max_length=150)
 	pub_date = models.DateTimeField('Date published')
 	author = models.ForeignKey(User)
@@ -18,7 +13,6 @@ class Post(models.Model):
 		help_text='Automatically built from the Title'
 	)
 	tags = TaggableManager()
-	section = models.CharField(max_length=10,choices=SECTION_CHOICES)
 	published = models.BooleanField(default=True)
 	
 	class Meta:
@@ -30,4 +24,4 @@ class Post(models.Model):
 		return u'%s' % (self.title)
 		
 	def get_absolute_url(self):
-		return "/%s/%s/%s/" % (self.section, self.pub_date.strftime("%Y/%b/%d").lower(), self.slug)
+		return "http://ephestr.us/blog/%s/%s/" % (self.pub_date.strftime("%Y/%b/%d").lower(), self.slug)
