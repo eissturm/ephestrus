@@ -6,5 +6,10 @@ class PostAdmin(admin.ModelAdmin):
 	search_field = ['title', 'entry']
 	list_filter = ('pub_date', 'published')
 	prepopulated_fields = {"slug": ("title",)}
+	class Media:
+			js = (
+				'/js/tiny_mce/tiny_mce.js',
+				'/js/admin_pages.js'
+			)
 	
 admin.site.register(Post, PostAdmin)
